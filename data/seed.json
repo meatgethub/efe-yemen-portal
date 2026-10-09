@@ -1,0 +1,205 @@
+{
+  "meta": {
+    "org": "EFE-Yemen (Aden)",
+    "source": "محتوى تجريبي موسوم — يُستبدل ببيانات معتمدة من EFE-Yemen",
+    "reference": "https://www.efe.org/network/efe-yemen",
+    "timezone": "Asia/Aden",
+    "createdAt": "2026-10-09T00:00:00.000Z"
+  },
+  "staff": [
+    {
+      "username": "admin",
+      "name": "مدير النظام (تجريبي)",
+      "role": "admin",
+      "salt": "seed-salt-admin",
+      "note": "كلمة المرور التجريبية: Admin123! — غيّرها فور التشغيل"
+    },
+    {
+      "username": "programs",
+      "name": "مديرة البرامج (تجريبي)",
+      "role": "program_manager",
+      "salt": "seed-salt-pm",
+      "note": "كلمة المرور التجريبية: Manager123! — غيّرها فور التشغيل"
+    },
+    {
+      "username": "reviewer",
+      "name": "مراجع (تجريبي)",
+      "role": "reviewer",
+      "salt": "seed-salt-rev",
+      "note": "كلمة المرور التجريبية: Review123! — غيّرها فور التشغيل"
+    }
+  ],
+  "programs": [
+    {
+      "id": "prog-solar-aden",
+      "title": "أساسيات الطاقة الشمسية وتركيب الأنظمة [محتوى تجريبي]",
+      "field": "الطاقة الشمسية",
+      "location": "عدن",
+      "delivery": "حضوري",
+      "status": "published",
+      "capacity": 30,
+      "cost": "مجاني",
+      "startDate": "2026-11-15T00:00:00.000Z",
+      "endDate": "2026-12-15T00:00:00.000Z",
+      "schedule": "الأحد – الخميس، 9 صباحاً – 1 ظهراً",
+      "venue": "مركز التدريب — عدن (يُحدَّد العنوان الدقيق للمقبولين)",
+      "applicationOpenDate": "2026-09-01T00:00:00.000Z",
+      "applicationDeadline": "2026-11-01T21:00:00.000Z",
+      "summary": "تدريب عملي للمبتدئين على أساسيات الكهرباء وأنظمة الطاقة الشمسية المنزلية ومهارات السلامة والعمل.",
+      "description": "برنامج تدريبي تجريبي (محتوى للعرض فقط) يعرّف المشاركين بأساسيات الكهرباء، ومكونات المنظومة الشمسية، والتركيب والصيانة الأولية، إضافة إلى مهارات سوق العمل. المحتوى النهائي يُعتمد من EFE-Yemen.",
+      "eligibility": ["العمر 18–35 سنة", "الإقامة في عدن والقدرة على الحضور اليومي", "الالتزام الكامل بمدة التدريب", "لا يشترط خبرة سابقة"],
+      "formConfig": {
+        "customQuestions": [
+          { "id": "q_exp", "label": "هل لديك أي خبرة سابقة في الكهرباء أو الطاقة الشمسية؟ اشرح باختصار.", "required": false },
+          { "id": "q_commit", "label": "هل تستطيع الالتزام بالحضور اليومي طوال فترة التدريب؟", "required": true }
+        ],
+        "requiredDocuments": [{ "id": "cv", "label": "السيرة الذاتية (PDF أو Word)", "required": false }],
+        "scoringCriteria": [
+          { "id": "motivation", "label": "الدافعية والجدية (من 10)", "max": 10 },
+          { "id": "availability", "label": "التفرغ والالتزام (من 10)", "max": 10 },
+          { "id": "need", "label": "الحاجة للفرصة (من 10)", "max": 10 }
+        ]
+      },
+      "enrollmentInfo": { "instructions": "على المقبولين تأكيد المقعد خلال 5 أيام وإحضار البطاقة الشخصية وصورة شخصية.", "documents": ["البطاقة الشخصية", "صورة شخصية"], "announcements": ["سيُعلن مكان التدريب الدقيق للمقبولين عبر رسالة نصية."] }
+    },
+    {
+      "id": "prog-it-sanaa",
+      "title": "المهارات الرقمية والعمل الحر [محتوى تجريبي]",
+      "field": "تقنية المعلومات",
+      "location": "صنعاء",
+      "delivery": "مدمج",
+      "status": "published",
+      "capacity": 40,
+      "cost": "مجاني",
+      "startDate": "2026-12-01T00:00:00.000Z",
+      "endDate": "2027-01-20T00:00:00.000Z",
+      "schedule": "3 أيام أسبوعياً — مسائية",
+      "venue": "حضوري جزئي في صنعاء + حصص عن بُعد",
+      "applicationOpenDate": "2026-09-15T00:00:00.000Z",
+      "applicationDeadline": "2026-11-20T21:00:00.000Z",
+      "summary": "مهارات الحاسوب والعمل عبر الإنترنت: أدوات العمل عن بُعد، والتسويق الرقمي الأساسي، ومهارات التوظيف.",
+      "description": "محتوى تجريبي للعرض. يشمل أساسيات الحاسوب، وأدوات العمل عن بُعد، ومهارات إعداد السيرة الذاتية والمقابلات، ومدخل إلى العمل الحر.",
+      "eligibility": ["العمر 18–35 سنة", "معرفة أساسية باستخدام الحاسوب", "توفر اتصال إنترنت للحصص عن بُعد"],
+      "formConfig": {
+        "customQuestions": [{ "id": "q_pc", "label": "هل يتوفر لديك حاسوب واتصال إنترنت؟", "required": true }],
+        "requiredDocuments": [{ "id": "cv", "label": "السيرة الذاتية (PDF أو Word)", "required": true }],
+        "scoringCriteria": [
+          { "id": "motivation", "label": "الدافعية (من 10)", "max": 10 },
+          { "id": "readiness", "label": "الجاهزية الرقمية (من 10)", "max": 10 }
+        ]
+      },
+      "enrollmentInfo": { "instructions": "تأكيد المقعد إلكترونياً من لوحة المتقدم.", "documents": [], "announcements": [] }
+    },
+    {
+      "id": "prog-business-taiz",
+      "title": "ريادة الأعمال والمشاريع الصغيرة [محتوى تجريبي]",
+      "field": "الأعمال وريادة الأعمال",
+      "location": "تعز",
+      "delivery": "حضوري",
+      "status": "published",
+      "capacity": 25,
+      "cost": "مجاني",
+      "startDate": "2027-01-10T00:00:00.000Z",
+      "endDate": "2027-02-28T00:00:00.000Z",
+      "schedule": "الأحد والثلاثاء والخميس — صباحاً",
+      "venue": "تعز — يُحدَّد المكان للمقبولين",
+      "applicationOpenDate": "2026-12-01T00:00:00.000Z",
+      "applicationDeadline": "2026-12-30T21:00:00.000Z",
+      "summary": "من الفكرة إلى خطة العمل: دراسة الجدوى المبسطة، والتسويق، وإدارة المصاريف.",
+      "description": "محتوى تجريبي للعرض فقط.",
+      "eligibility": ["العمر 20–40 سنة", "وجود فكرة مشروع أو مشروع قائم صغير"],
+      "formConfig": {
+        "customQuestions": [{ "id": "q_idea", "label": "اشرح فكرة مشروعك في 3–5 أسطر.", "required": true }],
+        "requiredDocuments": [],
+        "scoringCriteria": [{ "id": "idea", "label": "وضوح الفكرة (من 10)", "max": 10 }]
+      },
+      "enrollmentInfo": { "instructions": "تأكيد المقعد خلال أسبوع من القبول.", "documents": [], "announcements": [] }
+    },
+    {
+      "id": "prog-life-mukalla",
+      "title": "المهارات الحياتية والاستعداد للعمل [محتوى تجريبي]",
+      "field": "المهارات الحياتية والتوظيف",
+      "location": "حضرموت (المكلا)",
+      "delivery": "حضوري",
+      "status": "published",
+      "capacity": 50,
+      "cost": "مجاني",
+      "startDate": "2026-10-20T00:00:00.000Z",
+      "endDate": "2026-11-05T00:00:00.000Z",
+      "schedule": "يومياً لمدة أسبوعين",
+      "venue": "المكلا — حضرموت",
+      "applicationOpenDate": "2026-08-01T00:00:00.000Z",
+      "applicationDeadline": "2026-10-05T21:00:00.000Z",
+      "summary": "مهارات التواصل، والعمل الجماعي، وإعداد السيرة الذاتية، والتحضير لمقابلات العمل.",
+      "description": "محتوى تجريبي للعرض فقط.",
+      "eligibility": ["العمر 18–30 سنة", "حديثو التخرج أو الباحثون عن عمل"],
+      "formConfig": { "customQuestions": [], "requiredDocuments": [], "scoringCriteria": [] },
+      "enrollmentInfo": { "instructions": "", "documents": [], "announcements": [] }
+    },
+    {
+      "id": "prog-remote-women",
+      "title": "المحاسبة المبسطة للنساء عن بُعد [محتوى تجريبي]",
+      "field": "المحاسبة والإدارة",
+      "location": "عن بُعد",
+      "delivery": "عن بُعد",
+      "status": "draft",
+      "capacity": 60,
+      "cost": "مجاني",
+      "startDate": "2027-03-01T00:00:00.000Z",
+      "endDate": "2027-04-01T00:00:00.000Z",
+      "schedule": "مسائي — عن بُعد",
+      "venue": "عبر الإنترنت",
+      "applicationOpenDate": "2027-01-01T00:00:00.000Z",
+      "applicationDeadline": "2027-02-15T21:00:00.000Z",
+      "summary": "برنامج قادم — المحتوى تجريبي.",
+      "description": "سيُفتح التقديم قريباً. المحتوى تجريبي.",
+      "eligibility": ["العمر 18–45 سنة", "توفر هاتف ذكي أو حاسوب وإنترنت"],
+      "formConfig": { "customQuestions": [], "requiredDocuments": [], "scoringCriteria": [] },
+      "enrollmentInfo": { "instructions": "", "documents": [], "announcements": [] }
+    },
+    {
+      "id": "prog-closed-demo",
+      "title": "إدارة المكاتب والسكرتاريا — دفعة سابقة [محتوى تجريبي]",
+      "field": "المحاسبة والإدارة",
+      "location": "عدن",
+      "delivery": "حضوري",
+      "status": "closed",
+      "capacity": 20,
+      "cost": "مجاني",
+      "startDate": "2026-05-01T00:00:00.000Z",
+      "endDate": "2026-06-01T00:00:00.000Z",
+      "schedule": "انتهى",
+      "venue": "عدن",
+      "applicationOpenDate": "2026-03-01T00:00:00.000Z",
+      "applicationDeadline": "2026-04-01T21:00:00.000Z",
+      "summary": "دفعة مغلقة للعرض فقط.",
+      "description": "انتهى التقديم لهذه الدفعة التجريبية.",
+      "eligibility": [],
+      "formConfig": { "customQuestions": [], "requiredDocuments": [], "scoringCriteria": [] },
+      "enrollmentInfo": { "instructions": "", "documents": [], "announcements": [] }
+    }
+  ],
+  "applications": [],
+  "otps": [],
+  "applicantSessions": [],
+  "outbox": [],
+  "activity": [
+    { "id": "log_seed", "at": "2026-10-09T00:00:00.000Z", "actor": "النظام", "role": "النظام", "action": "تهيئة قاعدة البيانات", "entity": "system", "entityId": "", "detail": "تم تحميل المحتوى التجريبي الموسوم" }
+  ],
+  "faqs": [
+    { "q": "هل التقديم مجاني؟", "a": "نعم، جميع البرامج المعروضة حالياً مجانية (حسب المحتوى التجريبي). تحقق دائماً من خانة التكلفة في صفحة البرنامج." },
+    { "q": "كيف أستعيد طلباتي بدون كلمة مرور؟", "a": "من صفحة (طلباتي) أدخل رقم الهاتف أو البريد الإلكتروني، وسنرسل لك رمز تحقق لمرة واحدة صالحاً 10 دقائق." },
+    { "q": "لم يصلني رمز التحقق، ماذا أفعل؟", "a": "تحقق من الرقم/البريد، وانتظر دقيقة ثم اطلب رمزاً جديداً. في الوضع التجريبي يظهر الرمز على الشاشة. عند تفعيل خدمة SMS/بريد حقيقية سيصلك فعلياً." },
+    { "q": "ما الملفات المقبولة للسيرة الذاتية؟", "a": "PDF أو Word أو صورة (JPG/PNG) بحد أقصى 5 ميجابايت." },
+    { "q": "كيف أعرف حالة طلبي؟", "a": "من لوحة (طلباتي) تظهر الحالة: تم التقديم، قيد المراجعة، القائمة المختصرة، قائمة الانتظار، مقبول، لم يتم الاختيار." },
+    { "q": "تم قبولي، كيف أؤكد مقعدي؟", "a": "افتح (طلباتي) ثم (التسجيل) واضغط تأكيد المقعد قبل الموعد الموضح، واستكمل المتطلبات المطلوبة." }
+  ],
+  "contact": {
+    "note": "بيانات تواصل تجريبية — تُستبدل ببيانات معتمدة من EFE-Yemen",
+    "phone": "+967-XXX-XXXXXX",
+    "email": "info@example.org",
+    "address": "عدن، اليمن (عنوان تجريبي)",
+    "hours": "الأحد – الخميس، 9 صباحاً – 4 عصراً بتوقيت عدن"
+  },
+  "counters": { "applicationSeq": 1000 }
+}
