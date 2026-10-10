@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         <header className="topbar">
           <div className="topbar-inner">
             <Link className="brand" href="/" aria-label="الصفحة الرئيسية لبوابة EFE-Yemen">
-              <Image src="/logo-efe-yemen.png" alt="شعار مؤسسة التعليم من أجل التوظيف – اليمن" width={200} height={95} className="brand-logo" priority />
+              <Image src="/efe-yemen-portal/logo-efe-yemen.png" alt="شعار مؤسسة التعليم من أجل التوظيف – اليمن" width={200} height={95} className="brand-logo" priority />
               <span>
                 بوابة التدريب والتسجيل — EFE-Yemen (عدن)
                 <small>محتوى تجريبي موسوم • جميع المواعيد بتوقيت عدن (Asia/Aden)</small>
