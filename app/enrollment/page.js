@@ -1,51 +1,38 @@
 'use client';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import site from '../../data/site.json';
+import { applicant, myApps, confirmEnrollment, getPrograms } from '../../lib/static-store';
+import { STATUS_LABELS } from '../../lib/constants';
 
 export default function Enrollment() {
   const [apps, setApps] = useState([]);
-  const [msg, setMsg] = useState('جارٍ التحميل…');
-
-  async function load() {
-    const t = typeof window !== 'undefined' ? localStorage.getItem('efe_applicant_token') : null;
-    if (!t) { setMsg('سجّل الدخول أولاً من صفحة طلباتي برمز التحقق.'); return; }
-    const r = await fetch('/api/applications?mine=1', { headers: { Authorization: 'Bearer ' + t } });
-    if (!r.ok) { setMsg('تعذر التحميل. سجّل الدخول من صفحة طلباتي.'); return; }
-    const j = await r.json();
-    setApps((j.applications || []).filter((a) => ['accepted', 'enrolled'].includes(a.status)));
-    setMsg('');
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    setReady(true);
+    if (applicant()) setApps(myApps().filter((a) => ['accepted', 'enrolled'].includes(a.status)));
+  }, []);
+  function act(id, action) {
+    const r = confirmEnrollment(id, action);
+    if (r.error) { alert(r.error); return; }
+    setApps(myApps().filter((a) => ['accepted', 'enrolled'].includes(a.status)));
   }
-  useEffect(() => { load(); }, []);
-
-  async function act(id, action) {
-    const t = localStorage.getItem('efe_applicant_token');
-    const r = await fetch('/api/applications/' + id, { method: 'PATCH', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + t }, body: JSON.stringify({ action }) });
-    const j = await r.json();
-    if (!r.ok) { alert(j.error || 'تعذر تنفيذ الإجراء.'); return; }
-    load();
-  }
-
+  if (!ready) return <div className="notice info">جارٍ التحميل…</div>;
+  if (!applicant()) return <div className="notice info" role="status">سجّل الدخول أولاً من صفحة طلباتي برمز التحقق. <Link href="/dashboard">الانتقال إلى طلباتي</Link></div>;
+  const progs = Object.fromEntries(getPrograms(site).map((p) => [p.id, p]));
   return (
     <div>
       <h1>التسجيل والقبول</h1>
-      <p>هذه الصفحة للمقبولين: تأكيد المقعد، واستكمال المتطلبات، وعرض الجدول والمكان والوثائق والإعلانات.</p>
-      {msg && <div className="notice info" role="status">{msg} <a href="/dashboard">الانتقال إلى طلباتي</a></div>}
-      {apps.length === 0 && !msg && <div className="notice info">لا توجد قبولات حالياً على هذه الوسيلة.</div>}
+      {apps.length === 0 && <div className="notice info">لا توجد قبولات حالياً على هذه الوسيلة في هذا المتصفح.</div>}
       {apps.map((a) => (
         <article className="card" key={a.id}>
           <h2>{a.programTitle}</h2>
-          <p>الحالة: <strong>{a.statusLabel}</strong> • المرجع: <strong dir="ltr">{a.reference}</strong></p>
-          {a.enrollment?.deadline && <p><strong>موعد تأكيد المقعد:</strong> {a.enrollment.deadline} (بتوقيت عدن)</p>}
+          <p>الحالة: <strong>{STATUS_LABELS[a.status]}</strong> • المرجع: <strong dir="ltr">{a.reference}</strong></p>
           {a.enrollment?.instructions && <p>{a.enrollment.instructions}</p>}
-          {a.enrollment?.checklist?.length > 0 && (
-            <div><strong>المتطلبات المتبقية:</strong>
-              <ul>{a.enrollment.checklist.filter((c) => !c.done).map((c, i) => <li key={i}>{c.label}</li>)}</ul>
-              {a.enrollment.checklist.filter((c) => !c.done).length === 0 && <p>اكتملت جميع المتطلبات ✓</p>}
-            </div>
-          )}
-          {a.schedule && <p><strong>الجدول والمكان:</strong> {a.schedule} — {a.venue}</p>}
-          {(a.documents || []).length > 0 && <p className="small">وثائقك المرفوعة: {(a.documents || []).map((d) => d.name).join('، ')}</p>}
+          {progs[a.programId] && <p><strong>الجدول والمكان:</strong> {progs[a.programId].schedule} — {progs[a.programId].venue}</p>}
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {a.status === 'accepted' && <><button className="btn btn-primary" onClick={() => act(a.id, 'confirm')}>تأكيد المقعد</button><button className="btn btn-ghost" onClick={() => act(a.id, 'decline')}>الاعتذار</button></>}
+            {a.status === 'enrolled' && <p>تم تأكيد تسجيلك ✓ (تجريبي).</p>}
           </div>
         </article>
       ))}

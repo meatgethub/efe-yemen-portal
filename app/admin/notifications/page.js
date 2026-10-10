@@ -1,19 +1,21 @@
 'use client';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { staff, getOutbox } from '../../../lib/static-store';
 
 export default function AdminNotifications() {
   const [outbox, setOutbox] = useState([]);
+  const [ok, setOk] = useState(false);
   useEffect(() => {
-    fetch('/api/admin/activity').then(async (r) => {
-      if (r.status === 401) { window.location.href = '/admin/login'; return; }
-      const j = await r.json(); setOutbox(j.outbox || []);
-    });
+    if (!staff()) { window.location.href = '/admin/login'; return; }
+    setOk(true); setOutbox(getOutbox());
   }, []);
+  if (!ok) return <div className="notice info">جارٍ التحميل…</div>;
   return (
     <div>
-      <h1>الإشعارات والصادر</h1>
-      <a className="btn btn-ghost" href="/admin">→ لوحة الإدارة</a>
-      <div className="notice warn"><strong>وضع تجريبي موسوم:</strong> الرسائل أدناه مسجّلة فقط ولم تُرسَل عبر SMS/بريد. للتفعيل الحقيقي اضبط متغيرات SMTP/Twilio في ملف .env (راجع README و.env.example).</div>
+      <h1>الإشعارات والصادر (تجريبي)</h1>
+      <Link className="btn btn-ghost" href="/admin">→ لوحة الإدارة</Link>
+      <div className="notice warn">جميع الرسائل مسجّلة محلياً فقط ولم تُرسَل عبر SMS/بريد.</div>
       <div className="card">
         <div className="table-wrap"><table>
           <thead><tr><th>الوقت</th><th>القناة</th><th>إلى</th><th>النص</th><th>الحالة</th></tr></thead>
